@@ -1,20 +1,10 @@
 ---
 import DefaultLayout from '../layouts/DefaultLayout.astro'
-import Hero from '../components/Hero.astro'
-import Feature from '../components/Feature.astro'
-import Counter from '../components/Counter.astro'
-import ContentMedia from '../components/ContentMedia.astro'
+import CallToAction from '../components/CallToAction.astro'
 ---
 
 <DefaultLayout title="Home">
-
-   <!-- short intro: coming soon with contact email info@jawbouw.nl -->
-   <!-- define props to be used in Hero.astro component -->
-
-    <Hero
-        title="JAW Bouw"
-        subtitle="Bouwbedrijf in de regio Noordwijk"
-        email="info@jawbouw.nl"
-        />
-
+  <CallToAction
+    email="info@jawbouw.nl"
+  />
 </DefaultLayout>

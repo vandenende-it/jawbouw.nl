@@ -9,9 +9,14 @@ import netlify from "@astrojs/netlify";
 // https://astro.build/config
 export default defineConfig({
   compressHTML: true,
-  integrations: [mdx(), icon(), tailwind({
-    applyBaseStyles: false
-  }), compress()],
+  integrations: [
+    mdx(),
+    icon(),
+    tailwind({
+      applyBaseStyles: false
+    }),
+    compress()
+  ],
   output: "static",
   adapter: netlify()
 });

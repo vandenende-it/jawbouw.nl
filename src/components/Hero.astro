@@ -1,15 +1,10 @@
 ---
-import { Icon } from 'astro-icon/components'
-
-const { email, subtitle } = Astro.props
+import CallToAction from './CallToAction.astro'
 ---
-
-<!-- use props to create intro and link to email -->
 <section class="hero my-24">
   <div class="container">
-    <a href="mailto:{{ email }}" class="text-gradient text-2xl md:text-left lg:text-3xl">
-      <slot><span>{email }</slot>
-    </a>
+
+
   </div>
 </section>
 

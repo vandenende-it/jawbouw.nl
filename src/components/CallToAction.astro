@@ -1,29 +1,40 @@
+---
+import { Icon } from 'astro-icon/components'
+
+const { email, subtitle } = Astro.props
+---
 <div class="container">
-  <div class="call-to-action mt-24 mb-32 flex flex-col items-center gap-12 rounded-xl p-12 md:p-24">
-    <h2 class="text-center text-3xl md:text-5xl">Get this theme on GitHub</h2>
-    <a href="https://github.com/markteekman/accessible-astro-starter" class="text-center text-lg"> Use this theme</a>
+  <div class="call-to-action mt-24 mb-32 flex flex-col items-center gap-12 p-12 md:p-24">
+    <h2 class="text-center text-3xl md:text-5xl">J.A. van der Wiel Bouw & Timmerwerken</h2>
+    <a href={`mailto:${email}`} class="text-gradient text-2xl md:text-left lg:text-3xl">
+      <slot><span>{email}</span></slot>
+    </a>
   </div>
 </div>
 
 <style lang="scss">
   .call-to-action {
-    color: var(--neutral-900);
-    background-image: linear-gradient(40deg, var(--primary-100), var(--secondary-200));
+    color: var(--neutral-100);
+    background-image: linear-gradient(40deg, var(--primary-400), var(--secondary-500));
+  }
+
+  .call-to-action h2 {
+    color: var(--neutral-100);
   }
 
   .call-to-action a:not(button),
   .call-to-action a:not(button):visited {
     padding: 1rem;
-    color: var(--neutral-900);
+    color: var(--neutral-100);
     font-weight: bold;
-    border: 3px solid var(--neutral-900);
+    border: 3px solid var(--neutral-100);
     border-radius: 3px;
     text-decoration: none;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
 
     &:where(:hover, :focus) {
-      color: var(--neutral-100);
-      background-color: var(--neutral-900);
+      color: var(--primary-100);
+      background-color: var(--primary-500);
       text-decoration: underline;
     }
   }

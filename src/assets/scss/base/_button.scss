@@ -8,31 +8,31 @@
   font-weight: bold;
   text-decoration: none;
   text-align: center;
-  color: var(--neutral-900);
-  background-color: var(--primary-100);
-  border: 3px solid var(--primary-100);
+  color: var(--neutral-500);
+  background-color: var(--primary-400);
+  border: 3px solid var(--primary-400);
   border-radius: 3px;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 
   &:hover,
   &:focus {
     text-decoration: underline;
-    background-color: var(--primary-200);
-    border-color: var(--primary-200);
+    background-color: var(--primary-450);
+    border-color: var(--primary-450);
   }
 
   &:visited {
-    color: var(--neutral-900);
+    color: var(--neutral-100);
   }
 
   &.color-secondary {
-    background-color: var(--secondary-100);
+    background-color: var(--secondary-450);
     border-color: (var(--secondary-100));
 
     &:hover,
     &:focus {
-      background-color: var(--secondary-400);
-      border-color: var(--secondary-400);
+      background-color: var(--secondary-450);
+      border-color: var(--secondary-450);
     }
   }
 

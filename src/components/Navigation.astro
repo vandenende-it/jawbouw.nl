@@ -10,6 +10,21 @@ import logo from '../assets/img/logo.svg'
     <a href="/" class="flex items-center gap-2 !no-underline">
       <Image src={logo} alt="Your Logo" width="200" height="130" />
     </a>
+
+    <div class="wrapper">
+      <nav class="desktop-menu" aria-label="Main navigation desktop">
+        <ul class="menu">
+          <slot />
+        </ul>
+      </nav>
+      <ResponsiveToggle />
+    </div>
+    <nav class="mobile-menu" aria-label="Main navigation mobile">
+      <ul class="menu">
+        <slot />
+      </ul>
+    </nav>
+  </div>
   
 </div>
 
@@ -252,7 +267,7 @@ import logo from '../assets/img/logo.svg'
 
     .wrapper {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 1rem;
     }
 
@@ -276,7 +291,7 @@ import logo from '../assets/img/logo.svg'
         .has-dropdown > button:focus {
           text-decoration: underline;
           text-decoration-thickness: 1px;
-          text-decoration-style: wavy;
+          text-decoration-style: solid;
           text-underline-offset: 7px;
         }
 
