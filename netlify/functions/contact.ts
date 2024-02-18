@@ -6,7 +6,7 @@ import axios from 'axios';
 const handler: Handler = async (event: { body: string }) => {
   const { SENDGRID_API_KEY } = process.env;
   const { reCAPTCHA_SECRET_KEY } = process.env;
-  const {FORM_TO_EMAIL} = process.env;
+  const { FORM_TO_EMAIL} = process.env;
 
   // get data from body
   let { name, email, message, recaptchaResponse } = JSON.parse(event.body);

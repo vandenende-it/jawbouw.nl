@@ -83,13 +83,11 @@ const { src = '/social-preview.png' } = Astro.props
     const messageElement = document.createElement('div')
     form.parentNode.appendChild(messageElement)
     const handleFormSubmission = (event) => {
-      console.log('Form submitted') // Check if the form submit event is being captured
       event.preventDefault()
       const data = event.target.elements
       // execute reCAPTCHA
       grecaptcha.ready(() => {
-        grecaptcha.execute("6LdECXcpAAAAALmz9ynWsEatWVOU2XSacOzrPV6C", { action: 'submit' }).then(function(token) {
-          console.log('reCAPTCHA token:', token) // Check if the reCAPTCHA token is being generated
+        grecaptcha.execute('6LdECXcpAAAAALmz9ynWsEatWVOU2XSacOzrPV6C', { action: 'submit' }).then(function(token) {
           // add token to form data
           const formData = {
             name: data.name.value,
