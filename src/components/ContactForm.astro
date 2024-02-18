@@ -96,7 +96,7 @@ const { src = '/social-preview.png' } = Astro.props
             recaptchaResponse: token
           }
           // Set POST request method to our netlify function
-          xhr.open('POST', '.netlify/functions/contact')
+          xhr.open('POST', '/.netlify/functions/contact')
           // Set the request headers
           xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8')
           // Send the data as JSON to our netlify function
