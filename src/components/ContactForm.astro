@@ -88,7 +88,7 @@ const { src = '/social-preview.png' } = Astro.props
       const data = event.target.elements
       // execute reCAPTCHA
       grecaptcha.ready(() => {
-        grecaptcha.execute(`${process.env.reCAPTCHA_SITE_KEY}`, { action: 'submit' }).then(function(token) {
+        grecaptcha.execute("6LdECXcpAAAAALmz9ynWsEatWVOU2XSacOzrPV6C", { action: 'submit' }).then(function(token) {
           console.log('reCAPTCHA token:', token) // Check if the reCAPTCHA token is being generated
           // add token to form data
           const formData = {
