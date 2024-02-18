@@ -1,0 +1,127 @@
+---
+import { Icon } from 'astro-icon/components'
+const { src = '/social-preview.png' } = Astro.props
+---
+<section class="my-12">
+  <div class="container">
+    <div>
+      <h2 class="mb-4 text-4xl font-bold  dark:text-white">Contact</h2>
+      <p class="mb-6 text-gray-600 dark:text-gray-400">Heb je een vraag of wil je een project starten? Neem contact met
+        ons op en we helpen je graag verder.</p>
+    </div>
+    <div class="grid grid-cols-1 items-center gap-24 lg:grid-cols-2">
+      <form id="contact" name="contact" method="GET">
+        <input type="hidden" name="form-name" value="contact" />
+        <label for="contact-name" class="block mb-2  font-medium text-gray-900 dark:text-white">Naam</label>
+        <div class="flex">
+        <span
+          class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-e-0 border-gray-300 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+          <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+               fill="currentColor" viewBox="0 0 20 20">
+            <path
+              d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
+          </svg>
+        </span>
+          <input
+            required
+            name="name"
+            type="text"
+            id="contact-name"
+            class="rounded-none rounded-e-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Uw naam">
+        </div>
+        <label for="contact-email" class="block mb-2  font-medium text-gray-900 dark:text-white">Uw email</label>
+        <div class="relative">
+          <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                 fill="currentColor" viewBox="0 0 20 16">
+              <path d="m10.036 8.278 9.258-7.79A1.979 1.979 0 0 0 18 0H2A1.987 1.987 0 0 0 .641.541l9.395 7.737Z" />
+              <path
+                d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z" />
+            </svg>
+          </div>
+          <input
+            id="contact-email"
+            type="email"
+            name="email"
+            inputmode="email"
+            required
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="uw email adress">
+        </div>
+        <label for="contact-message" class="block mb-2  font-medium text-gray-900 dark:text-white">Waar kunnen wij u mee
+          helpen?</label>
+        <textarea
+          id="contact-message"
+          name="message"
+          rows="4"
+          placeholder="Vertel ons over jouw project"
+          required
+          class="block mb-3 p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+        </textarea>
+        <div>
+          <button
+            class="button has-icon"
+            type="submit"
+            data-sitekey="6LemCncpAAAAAK803ehIe6RrUkPxk8LbWJPuVnuW"
+          >
+            <Icon name="ion:mail" />
+            Verstuur
+          </button>
+        </div>
+      </form>
+      <img class="hidden lg:block" src={src} alt="" decoding="async" />
+    </div>
+  </div>
+</section>
+
+<script client:load>
+  window.onRecaptchaApiLoaded = function() {
+    const form = document.getElementById('contact')
+    const xhr = new XMLHttpRequest()
+    const messageElement = document.createElement('div')
+    form.parentNode.appendChild(messageElement)
+    const handleFormSubmission = (event) => {
+      console.log('Form submitted') // Check if the form submit event is being captured
+      event.preventDefault()
+      const data = event.target.elements
+      // execute reCAPTCHA
+      grecaptcha.ready(() => {
+        grecaptcha.execute(`${process.env.reCAPTCHA_SITE_KEY}`, { action: 'submit' }).then(function(token) {
+          console.log('reCAPTCHA token:', token) // Check if the reCAPTCHA token is being generated
+          // add token to form data
+          const formData = {
+            name: data.name.value,
+            email: data.email.value,
+            message: data.message.value,
+            recaptchaResponse: token
+          }
+          // Set POST request method to our netlify function
+          xhr.open('POST', '.netlify/functions/contact')
+          // Set the request headers
+          xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8')
+          // Send the data as JSON to our netlify function
+          xhr.send(JSON.stringify(formData))
+          // Handle the response
+          xhr.onload = function() {
+            const response = JSON.parse(xhr.responseText)
+            if (xhr.status === 200) {
+              // Create a success message element
+              messageElement.textContent = 'Bedankt voor uw bericht! We nemen zo snel mogelijk contact met u op.'
+              messageElement.style.color = 'green'
+              form.remove()
+            } else {
+              messageElement.textContent = 'An error occurred. Please try again.'
+              messageElement.style.color = 'red'
+            }
+          }
+        })
+      })
+    }
+    form.addEventListener('submit', handleFormSubmission, true)
+  }
+</script>
+<script
+  src="https://www.google.com/recaptcha/api.js?render=6LemCncpAAAAAK803ehIe6RrUkPxk8LbWJPuVnuW&onload=onRecaptchaApiLoaded"
+  async defer></script>

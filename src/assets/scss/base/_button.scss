@@ -8,21 +8,21 @@
   font-weight: bold;
   text-decoration: none;
   text-align: center;
-  color: var(--neutral-500);
-  background-color: var(--primary-400);
-  border: 3px solid var(--primary-400);
+  color: var(--neutral-100);
+  background-color: var(--primary-450);
+  border: 3px solid var(--primary-450);
   border-radius: 3px;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 
   &:hover,
   &:focus {
     text-decoration: underline;
-    background-color: var(--primary-450);
-    border-color: var(--primary-450);
+    background-color: var(--primary-400);
+    border-color: var(--primary-400);
   }
 
   &:visited {
-    color: var(--neutral-100);
+    color: var(--primary-100);
   }
 
   &.color-secondary {
@@ -37,8 +37,8 @@
   }
 
   &.color-neutral {
-    background-color: var(--neutral-500);
-    border-color: (var(--neutral-500));
+    background-color: var(--neutral-100);
+    border-color: (var(--neutral-100));
 
     &:hover,
     &:focus {
