@@ -1,7 +1,9 @@
 ---
 import { Icon } from 'astro-icon/components'
 const { src = '/social-preview.png' } = Astro.props
+const reCAPTCHA_SITE_KEY = import.meta.env.PUBLIC_reCAPTCHA_SITE_KEY
 ---
+
 <section class="my-12">
   <div class="container">
     <div>
@@ -64,7 +66,7 @@ const { src = '/social-preview.png' } = Astro.props
           <button
             class="button has-icon"
             type="submit"
-            data-sitekey="6LdECXcpAAAAALmz9ynWsEatWVOU2XSacOzrPV6C"
+            data-sitekey={reCAPTCHA_SITE_KEY}
           >
             <Icon name="ion:mail" />
             Verstuur
@@ -76,7 +78,7 @@ const { src = '/social-preview.png' } = Astro.props
   </div>
 </section>
 
-<script client:load>
+<script client:load define:vars={{ reCAPTCHA_SITE_KEY }}>
   window.onRecaptchaApiLoaded = function() {
     const form = document.getElementById('contact')
     const xhr = new XMLHttpRequest()
@@ -87,8 +89,9 @@ const { src = '/social-preview.png' } = Astro.props
       const data = event.target.elements
       // execute reCAPTCHA
       grecaptcha.ready(() => {
-        grecaptcha.execute('6LdECXcpAAAAALmz9ynWsEatWVOU2XSacOzrPV6C', { action: 'submit' }).then(function(token) {
+        grecaptcha.execute(reCAPTCHA_SITE_KEY, { action: 'submit' }).then(function(token) {
           // add token to form data
+          console.log(token)
           const formData = {
             name: data.name.value,
             email: data.email.value,
@@ -121,5 +124,5 @@ const { src = '/social-preview.png' } = Astro.props
   }
 </script>
 <script
-  src="https://www.google.com/recaptcha/api.js?render=6LdECXcpAAAAALmz9ynWsEatWVOU2XSacOzrPV6C&onload=onRecaptchaApiLoaded"
+  src=`https://www.google.com/recaptcha/api.js?render=${reCAPTCHA_SITE_KEY}&onload=onRecaptchaApiLoaded`
   async defer></script>

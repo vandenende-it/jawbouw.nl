@@ -4,17 +4,14 @@ import { Handler } from "@netlify/functions";
 import axios from 'axios';
 
 const handler: Handler = async (event: { body: string }) => {
-  const { SENDGRID_API_KEY } = process.env;
-  const { reCAPTCHA_SECRET_KEY } = process.env;
-  const { FORM_TO_EMAIL} = process.env;
-
-  // get data from body
+  const {
+    SENDGRID_API_KEY,
+    reCAPTCHA_SECRET_KEY,
+    FORM_TO_EMAIL
+  } = process.env;
   let { name, email, message, recaptchaResponse } = JSON.parse(event.body);
-
-  // verify reCAPTCHA
   const recaptchaVerifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${reCAPTCHA_SECRET_KEY}&response=${recaptchaResponse}`;
    recaptchaResponse = await axios.post(recaptchaVerifyUrl);
-
   if (!recaptchaResponse.data.success) {
     return {
       statusCode: 400,
