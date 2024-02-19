@@ -1,16 +1,14 @@
 ---
 const { email } = Astro.props
 ---
-<section class="hero my-24">
-  <div class="container">
+
     <div class="call-to-action mt-24 mb-32 flex flex-col items-center gap-12 p-12 md:p-24">
       <h2 class="text-center text-3xl md:text-5xl">J.A. van der Wiel Bouw & Timmerwerken</h2>
       <a href={`mailto:${email}`} class="text-gradient text-2xl md:text-left lg:text-3xl">
         <slot><span>{email}</span></slot>
       </a>
     </div>
-  </div>
-</section>
+
 
 <style lang="scss">
   .call-to-action {
