@@ -1,10 +1,10 @@
 ---
 import { Icon } from 'astro-icon/components'
-const { src = '/hero-home.jpg' } = Astro.props
+const heroHome = 'url(/hero-home.jpg)'
 ---
 
 <section
-  class="mb-24 bg-[url('hero-home.jpg')] bg-cover bg-center bg-no-repeat h-[550px] flex justify-center items-center">
+  class="mb-24 bg-wiel bg-cover bg-center bg-no-repeat h-[550px] flex justify-center items-center">
   <div class="container flex flex-col items-center gap-4">
     <h1 class="text-center text-6xl md:text-left lg:text-8xl">
       <slot><span class="text-gradient">J.A. van der Wiel</span> Bouw & Timmerwerken</slot>
@@ -25,12 +25,16 @@ const { src = '/hero-home.jpg' } = Astro.props
   </div>
 </section>
 
-<style lang="scss">
+<style lang="scss" define:vars={{ heroHome }}>
   .text-gradient {
     background: linear-gradient(315deg, var(--primary-200) 25%, var(--secondary-500));
     background-clip: border-box;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+
+  .bg-wiel {
+    background-image: var(--heroHome);
   }
 
   :global(.darkmode .text-gradient) {
