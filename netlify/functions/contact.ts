@@ -5,7 +5,7 @@ import validator from 'validator';
 
 const handler: Handler = async (event) => {
   const {
-    RESEND_API_KEY,
+    RESEND_API,
     RECAPTCHA_SECRET_KEY,
     FORM_TO_EMAIL
   } = process.env;
@@ -76,7 +76,7 @@ const handler: Handler = async (event) => {
   const sanitizedName = validator.escape(name);
   const subject = `Nieuw bericht van ${sanitizedName} (${email})`;
 
-  const resend = new Resend(RESEND_API_KEY);
+  const resend = new Resend(RESEND_API);
 
   try {
     const data = await resend.emails.send({
