@@ -14,10 +14,10 @@ const handler: Handler = async (event) => {
     return { statusCode: 400, body: JSON.stringify({ msg: "No body" }) };
   }
 
-  const { name, email, message, recaptchaResponse } = JSON.parse(event.body);
+  const { name, email, message, token } = JSON.parse(event.body);
 
   // reCAPTCHA verification
-  const recaptchaVerifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${RECAPTCHA_SECRET_KEY}&response=${recaptchaResponse}`;
+  const recaptchaVerifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${RECAPTCHA_SECRET_KEY}&response=${token}`;
 
   try {
     const recaptchaCheck = await axios.post(recaptchaVerifyUrl);
