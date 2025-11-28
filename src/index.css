@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --action-color: #005b96;
+    /* Adjust to match your primary color */
+    --action-color-state: #004a7a;
+    --primary-450: #005b96;
+    --font-family-special: 'Montserrat', sans-serif;
+  }
+
+  html {
+    font-family: 'Montserrat', sans-serif;
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+  }
+
+  a,
+  a:hover,
+  a:visited,
+  a:active,
+  .nav-link {
+    text-decoration: none !important;
+  }
+
+  body {
+    @apply antialiased;
+  }
+}
+
+/* Custom Link Animation */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: currentColor;
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Carousel Animations */
+/* Carousel Animations - 3D Cube */
+@keyframes cubeRotateOut {
+  from {
+    opacity: 1;
+    transform: rotateY(0deg) translateZ(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: rotateY(-90deg) translateZ(200px);
+  }
+}
+
+@keyframes cubeRotateIn {
+  from {
+    opacity: 0;
+    transform: rotateY(90deg) translateZ(200px);
+  }
+
+  to {
+    opacity: 1;
+    transform: rotateY(0deg) translateZ(0);
+  }
+}
+
+.animate-cube-out {
+  animation: cubeRotateOut 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  transform-origin: center right;
+  will-change: transform, opacity;
+}
+
+.animate-cube-in {
+  animation: cubeRotateIn 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  transform-origin: center left;
+  will-change: transform, opacity;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
