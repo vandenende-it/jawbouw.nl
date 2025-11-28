@@ -46,7 +46,7 @@ export default function Navigation() {
                     <img
                         src={logo}
                         alt="J.A. van der Wiel"
-                        className={`transition-all duration-300 ${isScrolled && !isMobileMenuOpen ? 'h-12' : 'h-16 md:h-20'}`}
+                        className={`transition-all duration-300 ${isScrolled && !isMobileMenuOpen ? 'h-12' : 'h-16 md:h-20'} ${isMobileMenuOpen ? 'brightness-0 invert' : ''}`}
                     />
                 </a>
 

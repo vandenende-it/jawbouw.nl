@@ -3,7 +3,7 @@ import logo from '../assets/img/logo.svg'
 
 export default function Hero() {
     return (
-        <section id="home" className="relative min-h-screen flex items-center bg-primary-50 overflow-hidden pt-20 lg:pt-0">
+        <section id="home" className="relative min-h-screen flex items-center bg-primary-50 overflow-hidden pt-32 lg:pt-0">
             {/* Background Decor */}
             <div className="absolute top-0 right-0 w-1/2 h-full bg-white/50 skew-x-12 transform origin-top-right hidden lg:block"></div>
 
@@ -41,14 +41,14 @@ export default function Hero() {
                     </div>
 
                     {/* Right Content - Logo */}
-                    <div className="lg:w-1/2 relative h-[400px] md:h-[600px] w-full mt-10 lg:mt-0 flex items-center justify-center">
+                    <div className="lg:w-1/2 relative h-[250px] md:h-[600px] w-full mt-6 lg:mt-0 flex items-center justify-center">
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-white rounded-full blur-3xl opacity-60"></div>
 
                         <div className="relative z-20 w-full h-full flex items-center justify-center animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
                             <img
                                 src={logo}
                                 alt="J.A. van der Wiel Bouw & Timmerwerken"
-                                className="max-w-full max-h-full object-contain drop-shadow-2xl p-8"
+                                className="max-w-full max-h-full object-contain drop-shadow-2xl p-0 md:p-8"
                             />
                         </div>
                     </div>
